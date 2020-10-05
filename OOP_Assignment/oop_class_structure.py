@@ -14,7 +14,7 @@ class Customer:
         self.state = state
         self.zip = zip
         self.balance = 0.0
-        self.cust_pet = None # every customer can have one and only one pet
+        self.cust_pets = [] # every customer can have one and only one pet
 
     def gen_id(self, first_name, last_name, address1):
         # remove spaces
@@ -23,11 +23,16 @@ class Customer:
         # takes portions of each input to generate unique customer id
         return f'{first_name[:3]}{last_name[:3]}{address[:5]}'
 
-    def return_bill (self):
+    def return_bill(self):
         # returns a string containing inforation on what a customer owes
-        start = self.cust_pet.appointment.begin_date.strftime('%m/%d/%y')
-        end = self.cust_pet.appointment.end_date.strftime('%m/%d/%y')
-        return f'Customer {self.cust_id} with name {self.first_name} {self.last_name} owes ${self.balance} for {self.cust_pet.pet_name}\'s stay from {start} to {end}'
+        output = ""
+
+        for pet in self.cust_pets:
+            start = pet.appointment.begin_date.strftime('%m/%d/%y')
+            end = pet.appointment.end_date.strftime('%m/%d/%y')
+            output += f'Customer {self.cust_id} with name {self.first_name} {self.last_name} owes ${self.balance} for {pet.pet_name}\'s stay from {start} to {end}\n'
+
+        return output
 
     def make_payment(self, payment):
         # adjust balance when a payment is made
@@ -39,7 +44,7 @@ class Pet:
         self.pet_name = name
         self.breed = breed
         self.age = age
-        owner.cust_pet = self
+        owner.cust_pets.append(self)
         self.appointment = Appointment(owner)
 
 class Appointment:

@@ -14,21 +14,26 @@ zip = input("Enter zip code: ")
 # instantiate customer object
 customer1 = Customer(first_name, last_name, address1, address2, city, state, zip)
 
-# prompt user for pet info
-pet_name = input("Enter your pet's name: ")
-breed = input("Enter your pet's breed: ")
-age = int(input("Enter your pet's age: "))
+num_pets = int(input("How many pets are you registering today? "))
 
-# instantiate pet object
-pet1 = Pet(pet_name, breed, age, customer1)
+pets = []
+for i in range(num_pets):
+    # prompt user for pet info
+    pet_name = input("Enter your pet's name: ")
+    breed = input("Enter your pet's breed: ")
+    age = int(input("Enter your pet's age: "))
 
-# prompt user for appointment info
-begin_date =  datetime.strptime(input("Enter Start date in the format m/d/y: "), "%m/%d/%Y")
-end_date = datetime.strptime(input("Enter End date in the format m/d/y: "), "%m/%d/%Y")
-day_rate = float(input("Enter the day rate: "))
+    # add pet object to customer
+    pets.append(Pet(pet_name, breed, age, customer1))
 
 # instantiate appointment object
-customer1.cust_pet.appointment.set_appointment(begin_date, end_date, day_rate)
+for pet in customer1.cust_pets:
+    # prompt user for appointment info
+    begin_date =  datetime.strptime(input("Enter Start date in the format m/d/y: "), "%m/%d/%Y")
+    end_date = datetime.strptime(input("Enter End date in the format m/d/y: "), "%m/%d/%Y")
+    day_rate = float(input("Enter the day rate: "))
+
+    pet.appointment.set_appointment(begin_date, end_date, day_rate)
 
 # show bill info
 print(customer1.return_bill())

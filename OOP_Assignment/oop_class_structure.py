@@ -35,6 +35,7 @@ class Pet:
         self.pet_name = name
         self.breed = breed
         self.age = age
+        owner.cust_pet = self
         self.appointment = Appointment(owner)
 
 class Appointment:

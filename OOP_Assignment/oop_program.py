@@ -1,0 +1,15 @@
+from oop_class_structure import Customer, Pet, Appointment
+first_name = input("Enter first name: ")
+last_name = input("Enter last name: ")
+address1 = input("Enter address line 1: ")
+address2 = input("Enter address line 2: ")
+city = input("Enter city: ")
+state = input("Enter state: ")
+zip = input("Enter zip code: ")
+
+customer1 = Customer(first_name, last_name, address1, address2, city, state, zip)
+pet_name = input("Enter your pet's name: ")
+breed = input("Enter your pet's breed: ")
+age = int(input("Enter your pet's age: "))
+pet1 = Pet(pet_name, breed, age, customer1)
+print(customer1.return_bill())

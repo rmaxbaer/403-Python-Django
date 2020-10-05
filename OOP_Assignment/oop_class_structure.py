@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Customer:
     # the company is Critter Watch so all customers will be of that company
     company_name = 'Critter Watch'
@@ -23,7 +25,9 @@ class Customer:
 
     def return_bill (self):
         # returns a string containing inforation on what a customer owes
-        return f'Customer {self.cust_id} with name {self.first_name} {self.last_name} owes ${self.balance} for {self.cust_pet.pet_name}\'s stay from {self.cust_pet.appointment.begin_date} to {self.cust_pet.appointment.end_date}'
+        start = self.cust_pet.appointment.begin_date.strftime('%m/%d/%y')
+        end = self.cust_pet.appointment.end_date.strftime('%m/%d/%y')
+        return f'Customer {self.cust_id} with name {self.first_name} {self.last_name} owes ${self.balance} for {self.cust_pet.pet_name}\'s stay from {start} to {end}'
 
     def make_payment(self, payment):
         # adjust balance when a payment is made

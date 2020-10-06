@@ -18,9 +18,9 @@ num_pets = int(input('How many pets are you registering today? '))
 
 for i in range(num_pets):
     # prompt user for pet info
-    pet_name = input('Enter your pet\'s name: ')
-    breed = input('Enter your pet\'s breed: ')
-    age = int(input('Enter your pet\'s age: '))
+    pet_name = input(f'Enter pet {i + 1}\'s name: ')
+    breed = input(f'Enter pet {i + 1}\'s breed: ')
+    age = int(input(f'Enter pet {i + 1}\'s age: '))
 
     # add pet object to customer
     customer1.cust_pets.append(Pet(pet_name, breed, age, customer1))
@@ -32,9 +32,9 @@ for pet in customer1.cust_pets:
 
     for appt in range(num_appts):
         # prompt user for appointment info
-        begin_date =  datetime.strptime(input('Enter Start date in the format m/d/y: '), '%m/%d/%Y')
-        end_date = datetime.strptime(input('Enter End date in the format m/d/y: '), '%m/%d/%Y')
-        day_rate = float(input('Enter the day rate: '))
+        begin_date =  datetime.strptime(input(f'Enter Start date number {appt + 1} in the format m/d/yyyy: '), '%m/%d/%Y')
+        end_date = datetime.strptime(input(f'Enter End date number {appt + 1} in the format m/d/yyyy: '), '%m/%d/%Y')
+        day_rate = float(input(f'Enter the day rate for a {pet.breed}: '))
 
         # create the appointment and add it to the current pet
         oAppointment = Appointment(customer1)

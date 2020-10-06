@@ -25,12 +25,13 @@ class Customer:
 
     def return_bill(self):
         # returns a string containing inforation on what a customer owes
-        output = ""
+        output = f'Customer {self.cust_id} with name {self.first_name} {self.last_name} owes ${self.balance} for: \n'
 
         for pet in self.cust_pets:
-            start = pet.appointment.begin_date.strftime('%m/%d/%y')
-            end = pet.appointment.end_date.strftime('%m/%d/%y')
-            output += f'Customer {self.cust_id} with name {self.first_name} {self.last_name} owes ${self.balance} for {pet.pet_name}\'s stay from {start} to {end}\n'
+            for appt in pet.appointments:
+                start = appt.begin_date.strftime('%m/%d/%y')
+                end = appt.end_date.strftime('%m/%d/%y')
+                output += f'\t{pet.pet_name}\'s stay from {start} to {end}\n'
 
         return output
 
@@ -44,8 +45,7 @@ class Pet:
         self.pet_name = name
         self.breed = breed
         self.age = age
-        owner.cust_pets.append(self)
-        self.appointment = Appointment(owner)
+        self.appointments = []
 
 class Appointment:
 
